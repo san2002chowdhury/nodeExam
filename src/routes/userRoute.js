@@ -1,6 +1,9 @@
 import express from "express";
 import { login, logout, register } from "../controllers/userController.js";
-import { userValidateSchema, validateUser } from "../validators/userValidate.js";
+import {
+  userValidateSchema,
+  validateUser,
+} from "../validators/userValidate.js";
 import { verifyToken } from "../middlewares/tokenVerify.js";
 import { hasToken } from "../middlewares/hasToken.js";
 
