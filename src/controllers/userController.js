@@ -75,6 +75,13 @@ export const login = async (req, res) => {
                     accessToken,
                 });
             }
+            else {
+                return res.status(200).json({
+                    success: false,
+                    message: "User is not verified!",
+
+                });
+            }
         }
     } catch (err) {
         return res.status(500).json({
