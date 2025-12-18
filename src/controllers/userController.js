@@ -25,11 +25,13 @@ export const register = async (req, res) => {
                 expiresIn: "10m",
             });
             verifyEmail(email, token);
+            user.token = token;
+            await user.save();
             return res.status(201).json({
                 success: true,
                 message: "User registered successfully!",
                 user,
-                token,
+                token
             });
         }
     } catch (err) {
@@ -61,7 +63,6 @@ export const login = async (req, res) => {
                 await sessionSchema.create({ userId: user._id });
 
                 user.isLoggedIn = true;
-                user.token = token;
                 await user.save();
 
                 const accessToken = jwt.sign({ id: user._id }, process.env.secretKey, {
